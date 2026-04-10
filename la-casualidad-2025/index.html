@@ -37,7 +37,8 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 .oi{display:flex;align-items:flex-start;gap:14px;padding:11px 0;border-bottom:1px solid var(--bg);font-size:13.5px;color:var(--txt)}
 .oi:last-child{border-bottom:none}
 .onum{min-width:26px;height:26px;background:var(--g1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+@media(min-width:640px){.kpis{grid-template-columns:repeat(4,1fr)}}
 .kpi{background:var(--bg);border-radius:8px;padding:13px 14px;border-left:3px solid var(--g2)}
 .kpi .lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:5px}
 .kpi .val{font-size:17px;font-weight:700;color:var(--g1)}
@@ -98,9 +99,9 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   <div class="shd"><div></div><div class="barrio">Estancia La Casualidad</div></div>
   <div class="cover">
     <svg width="90" height="68" viewBox="0 0 310 230" style="margin-bottom:18px"><use href="#logo"/></svg>
-    <div class="cv-yr">Asamblea Ordinaria</div>
+    <div class="cv-yr">Rendición de Cuentas 2025</div>
     <div class="cv-t">La Casualidad</div>
-    <div class="cv-s">Rendición de Cuentas 2025</div>
+    <div class="cv-s">Asamblea Ordinaria</div>
     <div class="cv-div"></div>
     <div class="cv-w">Bienvenidos</div>
   </div>
@@ -137,7 +138,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
       <div class="kpi"><div class="lbl">Ingresos totales</div><div class="val">$861.7M</div><div class="sub">$861.709.291</div></div>
       <div class="kpi"><div class="lbl">Egresos totales</div><div class="val">$837.9M</div><div class="sub">$837.906.649</div></div>
       <div class="kpi"><div class="lbl">Tenencias FCI</div><div class="val">$33.8M</div><div class="sub">Inversión al cierre</div></div>
-      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Disponibilidad total</div><div class="val good">$370.0M</div><div class="sub">Sin deudas al cierre</div></div>
+      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Disponibilidad total</div><div class="val good">$214.4M</div><div class="sub">Sin deudas al cierre</div></div>
     </div>
     <div class="chart-t">Índices de variación del período (%)</div>
     <div class="cw" style="height:200px"><canvas id="ci"></canvas></div>
@@ -155,7 +156,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
     <div class="stitle">Evolución de flujo mensual</div>
     <div class="leg"><div class="li"><div class="ld" style="background:#4c7a37"></div>Ingresos</div><div class="li"><div class="ld" style="background:#8ca5af"></div>Egresos</div></div>
     <div class="cw" style="height:280px"><canvas id="cf"></canvas></div>
-    <p class="note">El saldo disponible total al cierre es de $48,5M, representando más de la mitad de un mes de egresos como capital de trabajo.</p>
+    <p class="note">Completar con comentario del período</p>
   </div>
 </div>
 
@@ -181,7 +182,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   <div class="sbody">
     <div class="stitle">Evolución de la morosidad</div>
     <div class="cw" style="height:190px"><canvas id="cm"></canvas></div>
-    <p class="note" style="margin-bottom:14px">La morosidad promedio anual fue del 14%, manteniéndose en niveles controlados durante todo el período.</p>
+    <p class="note" style="margin-bottom:14px">Completar con comentario de morosidad</p>
     <div class="chart-t" style="margin-top:14px">Morosidad % base una expensa — 2025</div>
     <div class="cw" style="height:140px"><canvas id="cm2"></canvas></div>
   </div>
@@ -195,16 +196,16 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   </div>
   <div class="sbody">
     <div class="stitle">Iniciativas más relevantes del período</div>
-    <div class="igrid"><div class="ii"><span class="inum">01</span><span>Modernización de luminarias — 72 farolas renovadas</span></div>
-<div class="ii"><span class="inum">02</span><span>Instalación de 30 vallas reductoras de velocidad (lote 1) y 20 adicionales (lote 2)</span></div>
-<div class="ii"><span class="inum">03</span><span>Automatización del portón mediano del acceso principal</span></div>
-<div class="ii"><span class="inum">04</span><span>Puesta en valor de la plaza de juegos</span></div>
-<div class="ii"><span class="inum">05</span><span>Reparación del puente peatonal</span></div>
-<div class="ii"><span class="inum">06</span><span>Colocación de carpeta de césped sintético en cancha de fútbol</span></div>
-<div class="ii"><span class="inum">07</span><span>Puesta en valor SUM: cerámicos y mantenimiento</span></div>
-<div class="ii"><span class="inum">08</span><span>Reparaciones red de agua potable (lotes 24, 31, 71, 143, 145, 149, 154)</span></div>
-<div class="ii"><span class="inum">09</span><span>Reparación de fibra óptica perimetral — Circuito CCTV</span></div>
-<div class="ii"><span class="inum">10</span><span>Puesta en valor techos y portón del acceso principal</span></div></div>
+    <div class="igrid"><div class="ii"><span class="inum">01</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">02</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">03</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">04</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">05</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">06</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">07</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">08</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">09</span><span>(completar)</span></div>
+<div class="ii"><span class="inum">10</span><span>(completar)</span></div></div>
   </div>
 </div>
 
@@ -240,7 +241,7 @@ const M=["0,"1,"2,"3,"4,"5,"6,"7,"8,"9,"10,"1Feb"];
 const M=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 const ING=[55454320,61223061,64627332,70018244,70562192,67975867,69824720,70985253,82578754,82638415,77553788,88267345];
 const EGR=[60555385,61317771,55903437,67641891,67877410,68120520,68712474,69123637,74759922,83319948,75388742,85185512];
-const MORA_P=[6233898,9089894,11512350,8992768,8604408,11508801,13238020,18273323,15131752,10833965,16787229,14358480];
+const MORA_P=[6523847,9089894,11589615,8754022,8929102,11591599,12978451,18003274,14762685,10453826,16689058,14156248];
 const MORA_PCT=[9,12,15,11,11,14,15,20,16,11,17,14];
 const G1='#2d5a1e',G2='#4c7a37',GL='#a8c888',BL='#8ca5af',AM='#b07828';
 
@@ -267,7 +268,7 @@ Chart.register(diffPlugin);
 window.addEventListener('load',()=>{
   new Chart(document.getElementById('ci'),{type:'bar',
     data:{labels:['Expensas','Seguridad','Inflación IPC','Prepagas'],
-      datasets:[{data:[139.5,120.9,131.5,132.5],
+      datasets:[{data:[139.5,0,131.5,132.5],
         backgroundColor:[G2,GL,AM+'99',AM],borderRadius:4,borderWidth:0}]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'%'}}},
@@ -285,8 +286,8 @@ window.addEventListener('load',()=>{
                x:{ticks:{font:{size:10}},grid:{display:false}}}}});
 
   new Chart(document.getElementById('ct'),{type:'doughnut',
-    data:{labels:['Seguridad 65.4%','Abonos 17.9%','Mantenimiento 11.4%','Servicios 2.9%','Gtos.Banc. 1.7%','Varios 0.8%'],
-      datasets:[{data:[548265944,149591526,95114663,24236248,14050293,6647975],
+    data:{labels:['Seguridad 65.4%','Abonos 17.9%','Mantenimiento 11.4%','Servicios 2.9%','Gtos.Banc. 0%','Varios 0.8%'],
+      datasets:[{data:[548265944,149591526,95114663,24236248,0,6647975],
         backgroundColor:[G1,BL,'#8a6a30',GL,AM+'88','#bbb'],borderWidth:2,borderColor:'#fff',hoverOffset:5}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
       plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:7,boxWidth:9}}}}});
