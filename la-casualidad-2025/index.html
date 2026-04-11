@@ -37,11 +37,12 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 .oi{display:flex;align-items:flex-start;gap:14px;padding:11px 0;border-bottom:1px solid var(--bg);font-size:13.5px;color:var(--txt)}
 .oi:last-child{border-bottom:none}
 .onum{min-width:26px;height:26px;background:var(--g1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+/* KPIs: 2 cols mobile, 5 cols desktop */
 .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
-@media(min-width:640px){.kpis{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:640px){.kpis{grid-template-columns:repeat(5,1fr)}}
 .kpi{background:var(--bg);border-radius:8px;padding:13px 14px;border-left:3px solid var(--g2)}
 .kpi .lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:5px}
-.kpi .val{font-size:17px;font-weight:700;color:var(--g1)}
+.kpi .val{font-size:16px;font-weight:700;color:var(--g1)}
 .kpi .sub{font-size:10px;color:var(--muted);margin-top:2px}
 .good{color:#2a6a2a!important}
 .chart-t{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:10px}
@@ -53,23 +54,23 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 .igrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .ii{display:flex;gap:9px;align-items:flex-start;padding:9px 11px;background:var(--bg);border-radius:6px;font-size:12px;color:var(--txt)}
 .inum{font-weight:700;color:var(--g2);min-width:20px;font-size:11px}
+/* Votación estática */
 .vbox{border:1.5px solid var(--border);border-radius:12px;padding:26px 30px;max-width:580px;margin:24px auto 0}
 .vtitle{font-size:20px;font-weight:600;color:var(--g1);margin-bottom:18px;text-align:center}
-.vrow{padding:12px 0;border-bottom:1px solid var(--bg)}
+.vrow{padding:14px 0;border-bottom:1px solid var(--bg)}
 .vrow:last-child{border-bottom:none}
-.vq{font-size:13px;color:var(--txt);margin-bottom:10px;display:flex;gap:10px}
+.vq{font-size:14px;color:var(--txt);display:flex;gap:10px;line-height:1.5}
 .vletter{font-weight:700;color:var(--g2);min-width:18px}
-.vbtns{display:flex;gap:10px;margin-left:28px}
-.vbtn{padding:7px 22px;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:12px;font-family:inherit;cursor:pointer;transition:all .15s;color:var(--txt);font-weight:500}
-.vbtn.yes{background:var(--g1);color:#fff;border-color:var(--g1)}
-.vbtn.no{background:#a03030;color:#fff;border-color:#a03030}
-.vbtn.abs{background:#6a7a5a;color:#fff;border-color:#6a7a5a}
-.vresult{margin-left:28px;margin-top:8px}
-.vbar-wrap{background:#eee;border-radius:4px;height:6px;margin:4px 0;overflow:hidden}
-.vbar-yes{background:var(--g2);height:100%;border-radius:4px;transition:width .4s}
-.vcounts{display:flex;gap:16px}
-.vc-s{display:flex;align-items:center;gap:4px}
-.vc-dot{width:8px;height:8px;border-radius:50%}
+/* Plan de obras */
+.obras-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.obra-card{background:var(--bg);border-radius:10px;padding:18px 20px;border-left:4px solid var(--g2)}
+.obra-card .oc-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
+.obra-card .oc-val{font-size:20px;font-weight:700;color:var(--g1)}
+.obra-card .oc-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.obra-highlight{background:var(--g1);border-radius:10px;padding:18px 20px;text-align:center;margin-bottom:16px}
+.obra-highlight .oc-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#a8c888;margin-bottom:6px}
+.obra-highlight .oc-val{font-size:28px;font-weight:700;color:#fff}
+.obra-highlight .oc-sub{font-size:12px;color:#c8e6b8;margin-top:4px}
 </style>
 </head>
 <body>
@@ -83,12 +84,13 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
     <polygon points="99.6,188 87.5,209 284.5,209 272.4,188" fill="#305c31"/>
   </symbol>
 </svg>
+
 <div class="pres">
 <nav class="nav">
   <div class="logo-wrap"><svg width="44" height="33" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
   <div class="dots" id="dots"></div>
   <div class="nav-btns">
-    <span class="ctr" id="ctr">1 / 9</span>
+    <span class="ctr" id="ctr">1 / 10</span>
     <button class="nbt" onclick="go(-1)">← Ant.</button>
     <button class="nbt" onclick="go(1)">Sig. →</button>
   </div>
@@ -107,7 +109,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   </div>
 </div>
 
-<!-- S2 ORDEN -->
+<!-- S2 ORDEN DEL DÍA -->
 <div class="slide" id="s2">
   <div class="shd">
     <div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
@@ -115,14 +117,16 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   </div>
   <div class="sbody">
     <div class="stitle">Orden del día</div>
-    <ol class="olist"><li class="oi"><span class="onum">1</span><span>Constitución legal de la Asamblea</span></li>
-<li class="oi"><span class="onum">2</span><span>Designación de dos copropietarios para firmar el Acta</span></li>
-<li class="oi"><span class="onum">3</span><span>Designación del Presidente de la Asamblea</span></li>
-<li class="oi"><span class="onum">4</span><span>Aprobación de la Gestión y rendición de cuentas período 2025</span></li>
-<li class="oi"><span class="onum">5</span><span>Estado de Juicios y/o Morosidad</span></li>
-<li class="oi"><span class="onum">6</span><span>Aprobación de la continuidad de la Administración</span></li>
-<li class="oi"><span class="onum">7</span><span>Análisis plan de obras 2026</span></li>
-<li class="oi"><span class="onum">8</span><span>Elección del Consejo de Propietarios</span></li></ol>
+    <ol class="olist">
+      <li class="oi"><span class="onum">1</span><span>Constitución legal de la Asamblea</span></li>
+      <li class="oi"><span class="onum">2</span><span>Designación de dos copropietarios para firmar el Acta</span></li>
+      <li class="oi"><span class="onum">3</span><span>Designación del Presidente de la Asamblea</span></li>
+      <li class="oi"><span class="onum">4</span><span>Aprobación de la Gestión y rendición de cuentas período 2025</span></li>
+      <li class="oi"><span class="onum">5</span><span>Estado de Juicios y/o Morosidad</span></li>
+      <li class="oi"><span class="onum">6</span><span>Aprobación de la continuidad de la Administración</span></li>
+      <li class="oi"><span class="onum">7</span><span>Análisis plan de obras 2026. Plan de Mejora de pavimento.</span></li>
+      <li class="oi"><span class="onum">8</span><span>Elección del Consejo de Propietarios</span></li>
+    </ol>
   </div>
 </div>
 
@@ -135,18 +139,19 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   <div class="sbody">
     <div class="stitle">Resumen financiero 2025</div>
     <div class="kpis">
-      <div class="kpi"><div class="lbl">Ingresos totales</div><div class="val">$861.7M</div><div class="sub">$861.709.291</div></div>
-      <div class="kpi"><div class="lbl">Egresos totales</div><div class="val">$837.9M</div><div class="sub">$837.906.649</div></div>
+      <div class="kpi"><div class="lbl">Ingresos totales</div><div class="val">$861.7M</div><div class="sub">$861.709.292</div></div>
+      <div class="kpi"><div class="lbl">Egresos totales</div><div class="val">$837.9M</div><div class="sub">$837.906.648</div></div>
       <div class="kpi"><div class="lbl">Tenencias FCI</div><div class="val">$33.8M</div><div class="sub">Inversión al cierre</div></div>
-      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Disponibilidad total</div><div class="val good">$214.4M</div><div class="sub">Sin deudas al cierre</div></div>
+      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Disponibilidad total</div><div class="val good">$48.5M</div><div class="sub">$48.542.736</div></div>
+      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Saldo bancario al cierre</div><div class="val good">$14.7M</div><div class="sub">$14.711.075</div></div>
     </div>
-    <div class="chart-t">Índices de variación del período (%)</div>
+    <div class="chart-t">Comparativa de expensas barrios (feb-26)</div>
     <div class="cw" style="height:200px"><canvas id="ci"></canvas></div>
-    <p class="note">Las expensas crecieron por debajo de la inflación y las prepagas — con un ambicioso plan de mantenimiento ejecutado.</p>
+    <p class="note">La Casualidad mantiene la expensa más competitiva entre los barrios de la zona.</p>
   </div>
 </div>
 
-<!-- S4 FLUJO -->
+<!-- S4 FLUJO MENSUAL -->
 <div class="slide" id="s4">
   <div class="shd">
     <div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
@@ -156,11 +161,11 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
     <div class="stitle">Evolución de flujo mensual</div>
     <div class="leg"><div class="li"><div class="ld" style="background:#4c7a37"></div>Ingresos</div><div class="li"><div class="ld" style="background:#c0392b"></div>Egresos</div></div>
     <div class="cw" style="height:280px"><canvas id="cf"></canvas></div>
-    <p class="note">Completar con comentario del período</p>
+    <p class="note">Los ingresos y egresos evolucionan en equilibrio.</p>
   </div>
 </div>
 
-<!-- S5 EGRESOS -->
+<!-- S5 COMPOSICIÓN EGRESOS -->
 <div class="slide" id="s5">
   <div class="shd">
     <div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
@@ -170,7 +175,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
     <div><div class="stitle" style="font-size:14px">Composición de egresos 2025</div><div class="cw" style="height:270px"><canvas id="ct"></canvas></div></div>
     <div><div class="stitle" style="font-size:14px">Participación vs 2024</div><div class="cw" style="height:270px"><canvas id="cc"></canvas></div></div>
   </div>
-  <div class="sbody" style="padding-top:4px"><p class="note">Por cada peso, 65 centavos se destinaron a seguridad y 29 centavos a mantenimiento + abonos.</p></div>
+  <div class="sbody" style="padding-top:4px"><p class="note">Dos de cada tres pesos se destinaron a seguridad.</p></div>
 </div>
 
 <!-- S6 MOROSIDAD -->
@@ -180,11 +185,13 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
     <div class="barrio">Estancia La Casualidad</div>
   </div>
   <div class="sbody">
-    <div class="stitle">Evolución de la morosidad</div>
-    <div class="cw" style="height:190px"><canvas id="cm"></canvas></div>
-    <p class="note" style="margin-bottom:14px">Completar con comentario de morosidad</p>
-    <div class="chart-t" style="margin-top:14px">Morosidad % base una expensa — 2025</div>
-    <div class="cw" style="height:140px"><canvas id="cm2"></canvas></div>
+    <div class="stitle">Evolución de la morosidad. Base de una expensa.</div>
+    <div class="leg">
+      <div class="li"><div class="ld" style="background:#a8c888"></div>2024</div>
+      <div class="li"><div class="ld" style="background:#4c7a37"></div>2025</div>
+    </div>
+    <div class="cw" style="height:300px"><canvas id="cm"></canvas></div>
+    <p class="note" style="font-size:14px;font-style:normal;font-weight:700;color:var(--txt);margin-top:16px">⚠️ Cuatro unidades agrupan el 85% de la morosidad total.</p>
   </div>
 </div>
 
@@ -196,53 +203,99 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
   </div>
   <div class="sbody">
     <div class="stitle">Iniciativas más relevantes del período</div>
-    <div class="igrid"><div class="ii"><span class="inum">01</span><span>Modernización de luminarias — 72 farolas renovadas</span></div>
-<div class="ii"><span class="inum">02</span><span>Instalación de 30 vallas reductoras de velocidad (lote 1) y 20 adicionales (lote 2)</span></div>
-<div class="ii"><span class="inum">03</span><span>Automatización del portón mediano del acceso principal</span></div>
-<div class="ii"><span class="inum">04</span><span>Puesta en valor de la plaza de juegos</span></div>
-<div class="ii"><span class="inum">05</span><span>Reparación del puente peatonal</span></div>
-<div class="ii"><span class="inum">06</span><span>Colocación de carpeta de césped sintético en cancha de fútbol</span></div>
-<div class="ii"><span class="inum">07</span><span>Puesta en valor SUM: cerámicos y mantenimiento</span></div>
-<div class="ii"><span class="inum">08</span><span>Reparaciones red de agua potable (lotes 24, 31, 71, 143, 145, 149, 154)</span></div>
-<div class="ii"><span class="inum">09</span><span>Reparación de fibra óptica perimetral — Circuito CCTV</span></div>
-<div class="ii"><span class="inum">10</span><span>Puesta en valor techos y portón del acceso principal</span></div></div>
+    <div class="igrid">
+      <div class="ii"><span class="inum">01</span><span>Modernización de luminarias — 72 farolas renovadas</span></div>
+      <div class="ii"><span class="inum">02</span><span>Instalación de 30 vallas reductoras de velocidad</span></div>
+      <div class="ii"><span class="inum">03</span><span>Colocación de carpeta de césped sintético en cancha de fútbol</span></div>
+      <div class="ii"><span class="inum">04</span><span>Puesta en valor de la plaza de juegos</span></div>
+      <div class="ii"><span class="inum">05</span><span>Reparación del puente peatonal</span></div>
+      <div class="ii"><span class="inum">06</span><span>Automatización del portón mediano del acceso principal</span></div>
+      <div class="ii"><span class="inum">07</span><span>Puesta en valor SUM: cerámicos y mantenimiento</span></div>
+      <div class="ii"><span class="inum">08</span><span>Reparaciones red de agua potable (lotes 24, 31, 71, 143, 145, 149, 154)</span></div>
+      <div class="ii"><span class="inum">09</span><span>Reparación de fibra óptica perimetral — Circuito CCTV</span></div>
+      <div class="ii"><span class="inum">10</span><span>Puesta en valor techos y portón del acceso principal</span></div>
+    </div>
   </div>
 </div>
 
-<!-- S8 VOTACIÓN 1 -->
+<!-- S8 VOTACIÓN GESTIÓN -->
 <div class="slide" id="s8">
   <div class="shd">
     <div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
     <div class="barrio">Estancia La Casualidad</div>
   </div>
-  <div class="sbody"><div class="vbox"><div class="vtitle">Votación</div>
-    <div class="vrow"><div class="vq"><span class="vletter">a)</span><span>Aprobación de la Gestión y rendición de cuentas período 2025</span></div><div class="vbtns"><button class="vbtn" onclick="vote('v1a','si',this)">Sí</button><button class="vbtn" onclick="vote('v1a','no',this)">No</button><button class="vbtn" onclick="vote('v1a','abs',this)">Abstención</button></div><div class="vresult" id="r-v1a"></div></div>
-    <div class="vrow"><div class="vq"><span class="vletter">b)</span><span>Aprobación de la continuidad de la Administración</span></div><div class="vbtns"><button class="vbtn" onclick="vote('v1b','si',this)">Sí</button><button class="vbtn" onclick="vote('v1b','no',this)">No</button><button class="vbtn" onclick="vote('v1b','abs',this)">Abstención</button></div><div class="vresult" id="r-v1b"></div></div>
-  </div><p class="note" style="text-align:center;margin-top:14px">Cada propietario puede votar una vez. Los resultados se actualizan en tiempo real.</p></div>
+  <div class="sbody">
+    <div class="vbox">
+      <div class="vtitle">Votación</div>
+      <div class="vrow">
+        <div class="vq"><span class="vletter">a)</span><span>Aprobación de la Gestión y rendición de cuentas período 2025</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vq"><span class="vletter">b)</span><span>Aprobación de la continuidad de la Administración</span></div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- S9 VOTACIÓN 2 -->
+<!-- S9 PLAN DE OBRAS -->
 <div class="slide" id="s9">
   <div class="shd">
     <div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
     <div class="barrio">Estancia La Casualidad</div>
   </div>
-  <div class="sbody"><div class="vbox"><div class="vtitle">Votación — Plan de obras y Consejo</div>
-    <div class="vrow"><div class="vq"><span class="vletter">a)</span><span>Aprobación del plan de obras 2026</span></div><div class="vbtns"><button class="vbtn" onclick="vote('v2a','si',this)">Sí</button><button class="vbtn" onclick="vote('v2a','no',this)">No</button><button class="vbtn" onclick="vote('v2a','abs',this)">Abstención</button></div><div class="vresult" id="r-v2a"></div></div>
-    <div class="vrow"><div class="vq"><span class="vletter">b)</span><span>Elección de miembros del Consejo de Propietarios</span></div><div class="vbtns"><button class="vbtn" onclick="vote('v2b','si',this)">Sí</button><button class="vbtn" onclick="vote('v2b','no',this)">No</button><button class="vbtn" onclick="vote('v2b','abs',this)">Abstención</button></div><div class="vresult" id="r-v2b"></div></div>
-  </div><p class="note" style="text-align:center;margin-top:14px">Resultados en tiempo real. Cada propietario puede votar una vez por dispositivo.</p></div>
-</div>
+  <div class="sbody">
+    <div class="stitle">Plan de obras 2026 — Mejora de pavimento</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:20px">Calle del lote 100 al 110</p>
+    <div class="obra-highlight">
+      <div class="oc-lbl">Costo total estimado (con IVA)</div>
+      <div class="oc-val">$85.318.310</div>
+      <div class="oc-sub">1.000 m² × $70.511 + 21% IVA</div>
+    </div>
+    <div class="obras-grid">
+      <div class="obra-card">
+        <div class="oc-lbl">Precio de referencia</div>
+        <div class="oc-val">$70.511 + IVA</div>
+        <div class="oc-sub">por m²</div>
+      </div>
+      <div class="obra-card">
+        <div class="oc-lbl">Superficie a asfaltar</div>
+        <div class="oc-val">1.000 m²</div>
+        <div class="oc-sub">Calle lote 100 al 110</div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:14px">Para poder cumplir con el plan de obras, se hará un ajuste de expensas equivalente a la inflación + 1% mensualmente, a partir de junio.</p>
+    <p class="note" style="margin-top:8px">Los valores son de referencia y ajustables según el Índice de la Cámara de Construcción (CAC).</p>
+  </div>
 </div>
 
-<script>
-const M=["0,"1,"2,"3,"4,"5,"6,"7,"8,"9,"10,"1Feb"];
-</script>
+<!-- S10 VOTACIÓN PLAN DE OBRAS -->
+<div class="slide" id="s10">
+  <div class="shd">
+    <div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
+    <div class="barrio">Estancia La Casualidad</div>
+  </div>
+  <div class="sbody">
+    <div class="vbox">
+      <div class="vtitle">Votación — Plan de obras y Consejo</div>
+      <div class="vrow">
+        <div class="vq"><span class="vletter">a)</span><span>Aprobación del plan de obras 2026 — Mejora de pavimento calle lote 100 al 110</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vq"><span class="vletter">b)</span><span>Elección de miembros del Consejo de Propietarios</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /pres -->
+
 <script>
 const M=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 const ING=[55454320,61223061,64627332,70018244,70562192,67975867,69824720,70985253,82578754,82638415,77553788,88267345];
 const EGR=[60555385,61317771,55903437,67641891,67877410,68120520,68712474,69123637,74759922,83319948,75388742,85185512];
-const MORA_P=[6523847,9089894,11589615,8754022,8929102,11591599,12978451,18003274,14762685,10453826,16689058,14156248];
-const MORA_PCT=[9,12,15,11,11,14,15,20,16,11,17,14];
+// Morosidad % 2024 y 2025
+const MORA_2024=[24,24,23,24,22,26,22,22,13,14,18,14];
+const MORA_2025=[9,12,15,11,11,14,15,20,16,11,17,14];
 const G1='#2d5a1e',G2='#4c7a37',GL='#a8c888',BL='#8ca5af',AM='#b07828';
 
 const diffPlugin={id:'dp',afterDraw(chart){
@@ -266,15 +319,26 @@ const diffPlugin={id:'dp',afterDraw(chart){
 Chart.register(diffPlugin);
 
 window.addEventListener('load',()=>{
+  // S3: Comparativa barrios (barras horizontales)
   new Chart(document.getElementById('ci'),{type:'bar',
-    data:{labels:['Expensas','Seguridad','Inflación IPC','Prepagas'],
-      datasets:[{data:[139.5,120.9,131.5,132.5],
-        backgroundColor:[G2,GL,AM+'99',AM],borderRadius:4,borderWidth:0}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'%'}}},
-      scales:{y:{min:100,max:148,ticks:{callback:v=>v+'%',font:{size:9}},grid:{color:'#f0f0f0'}},
-               x:{ticks:{font:{size:11}},grid:{display:false}}}}});
+    data:{
+      labels:['Las Condes','La Campiña','La Tranquera','La Casualidad'],
+      datasets:[{
+        data:[812000,625000,550245,512550],
+        backgroundColor:[BL,BL,BL,G1],
+        borderRadius:4,borderWidth:0
+      }]
+    },
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.raw.toLocaleString('es-AR')}}},
+      scales:{
+        x:{ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K',font:{size:9}},grid:{color:'#f0f0f0'}},
+        y:{ticks:{font:{size:11}},grid:{display:false}}
+      }
+    }
+  });
 
+  // S4: Flujo mensual
   new Chart(document.getElementById('cf'),{type:'line',
     data:{labels:M,datasets:[
       {label:'Ingresos',data:ING,borderColor:G2,backgroundColor:G2+'28',fill:true,tension:.3,pointRadius:3,borderWidth:2},
@@ -283,15 +347,19 @@ window.addEventListener('load',()=>{
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+(c.raw/1e6).toFixed(1)+'M'}}},
       scales:{y:{ticks:{callback:v=>'$'+(v/1e6).toFixed(0)+'M',font:{size:9}},grid:{color:'#f0f0f0'}},
-               x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+               x:{ticks:{font:{size:10}},grid:{display:false}}}}
+  });
 
+  // S5: Torta egresos
   new Chart(document.getElementById('ct'),{type:'doughnut',
-    data:{labels:['Seguridad 65.4%','Abonos 17.9%','Mantenimiento 11.4%','Servicios 2.9%','Gtos.Banc. 0%','Varios 0.8%'],
-      datasets:[{data:[548265944,149591526,95114663,24236248,0,6647975],
+    data:{labels:['Seguridad 65.4%','Abonos 17.9%','Mantenimiento 11.4%','Servicios 2.9%','Gtos.Banc. 1.7%','Varios 0.8%'],
+      datasets:[{data:[548265944,149591526,95114663,24236248,14050294,6647975],
         backgroundColor:[G1,BL,'#8a6a30',GL,AM+'88','#bbb'],borderWidth:2,borderColor:'#fff',hoverOffset:5}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
-      plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:7,boxWidth:9}}}}});
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:7,boxWidth:9}}}}
+  });
 
+  // S5: Comparativo vs 2024
   new Chart(document.getElementById('cc'),{type:'bar',
     data:{labels:['Seguridad','Abonos','Mantenimiento','Servicios'],
       datasets:[
@@ -302,51 +370,38 @@ window.addEventListener('load',()=>{
       _diffs:[-2.8,-0.3,2.6,0.0],
       plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:9,padding:8}}},
       scales:{x:{ticks:{callback:v=>v+'%',font:{size:9}},grid:{color:'#f0f0f0'},max:76},
-               y:{ticks:{font:{size:10}},grid:{display:false}}}}});
+               y:{ticks:{font:{size:10}},grid:{display:false}}}}
+  });
 
+  // S6: Morosidad % 2024 vs 2025 — un solo gráfico de barras
   new Chart(document.getElementById('cm'),{type:'bar',
-    data:{labels:M,datasets:[{data:MORA_P,
-      backgroundColor:MORA_P.map((_,i)=>i>=9?GL:BL),borderRadius:3,borderWidth:0}]},
+    data:{labels:M,datasets:[
+      {label:'2024',data:MORA_2024,backgroundColor:GL,borderRadius:3,borderWidth:0},
+      {label:'2025',data:MORA_2025,backgroundColor:G2,borderRadius:3,borderWidth:0}
+    ]},
     options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+(c.raw/1e6).toFixed(2)+'M'}}},
-      scales:{y:{ticks:{callback:v=>'$'+(v/1e6).toFixed(0)+'M',font:{size:9}},grid:{color:'#f0f0f0'}},
-               x:{ticks:{font:{size:10}},grid:{display:false}}}}});
-
-  new Chart(document.getElementById('cm2'),{type:'bar',
-    data:{labels:M,datasets:[{label:'2025',data:MORA_PCT,backgroundColor:G2,borderRadius:2,borderWidth:0}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'%'}}},
+      plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:10,padding:12}},
+               tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}}},
       scales:{y:{ticks:{callback:v=>v+'%',font:{size:9}},grid:{color:'#f0f0f0'}},
-               x:{ticks:{font:{size:10},autoSkip:false},grid:{display:false}}}}});
+               x:{ticks:{font:{size:10},autoSkip:false},grid:{display:false}}}}
+  });
 });
 
-const votes={};
-function vote(id,val,btn){
-  votes[id]=votes[id]===val?null:val;
-  const row=btn.closest('.vrow');
-  row.querySelectorAll('.vbtn').forEach(b=>{b.className='vbtn';});
-  if(votes[id]==='si')row.querySelectorAll('.vbtn')[0].classList.add('yes');
-  if(votes[id]==='no')row.querySelectorAll('.vbtn')[1].classList.add('no');
-  if(votes[id]==='abs')row.querySelectorAll('.vbtn')[2].classList.add('abs');
-  renderResult(id);
+// Navegación
+let cur=1;const tot=10;
+function upd(){
+  document.getElementById('ctr').textContent=cur+' / '+tot;
+  document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('on',i+1===cur));
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i+1===cur));
 }
-function renderResult(id){
-  const el=document.getElementById('r-'+id);if(!el)return;
-  const d={si:0,no:0,abs:0};if(votes[id])d[votes[id]]++;
-  const tot=d.si+d.no+d.abs,pct=tot?Math.round(d.si/tot*100):0;
-  el.innerHTML=`<div class="vbar-wrap"><div class="vbar-yes" style="width:${pct}%"></div></div>
-    <div class="vcounts" style="margin-top:4px">
-      <div class="vc-s"><div class="vc-dot" style="background:#4c7a37"></div><span style="font-size:11px;color:#3a5a2a">Sí: ${d.si} (${pct}%)</span></div>
-      <div class="vc-s"><div class="vc-dot" style="background:#a03030"></div><span style="font-size:11px;color:#3a5a2a">No: ${d.no}</span></div>
-      <div class="vc-s"><div class="vc-dot" style="background:#888"></div><span style="font-size:11px;color:#3a5a2a">Abs: ${d.abs}</span></div>
-    </div>`;
-}
-
-let cur=1;const tot=9;
-function upd(){document.getElementById('ctr').textContent=cur+' / '+tot;document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('on',i+1===cur));document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i+1===cur));}
 function go(d){cur=Math.max(1,Math.min(tot,cur+d));upd();}
 const dotsEl=document.getElementById('dots');
-for(let i=1;i<=tot;i++){const d=document.createElement('div');d.className='dot'+(i===1?' on':'');d.onclick=()=>{cur=i;upd();};dotsEl.appendChild(d);}
+for(let i=1;i<=tot;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===1?' on':'');
+  d.onclick=()=>{cur=i;upd();};
+  dotsEl.appendChild(d);
+}
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
 </script>
 </body>
