@@ -23,27 +23,26 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 .ctr{font-size:11px;color:var(--muted);white-space:nowrap}
 .slide{display:none;min-height:520px;background:#fff}
 .slide.on{display:block}
-.shd{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;border-bottom:2px solid var(--border)}
+.shd{display:flex;justify-content:space-between;align-items:center;padding:12px 28px;border-bottom:2px solid var(--border)}
 .barrio{font-size:10px;font-weight:500;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
 .sbody{padding:26px 34px}
 .stitle{font-size:17px;font-weight:600;color:var(--g1);margin-bottom:20px}
 .cover{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:460px;text-align:center;background:linear-gradient(150deg,#f5f9f2 0%,#e8f2de 100%);position:relative}
-.qr-corner{position:absolute;bottom:18px;left:18px;display:flex;flex-direction:column;align-items:center;gap:5px}
-.qr-corner img{width:80px;height:80px;border-radius:6px;border:2px solid var(--border)}
-.qr-corner span{font-size:9px;color:var(--muted);letter-spacing:.5px}
-.qr-nav{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0}
-.qr-nav img{width:40px;height:40px;border-radius:4px;border:1px solid var(--border)}
-.qr-nav span{font-size:8px;color:var(--muted)}
 .cv-yr{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
 .cv-t{font-size:36px;font-weight:300;color:var(--g1);margin-bottom:6px}
 .cv-s{font-size:18px;color:var(--g2);margin-bottom:24px}
 .cv-div{width:50px;height:2px;background:var(--g2);margin:0 auto 24px}
 .cv-w{font-size:13px;color:var(--muted);font-weight:300}
+.qr-cover{position:absolute;bottom:20px;left:24px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.qr-cover img{width:80px;height:80px;border-radius:6px;border:2px solid var(--border)}
+.qr-cover span{font-size:9px;color:var(--muted);letter-spacing:.8px;text-transform:uppercase}
+.qr-sm{display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0}
+.qr-sm img{width:44px;height:44px;border-radius:4px;border:1px solid var(--border)}
+.qr-sm span{font-size:8px;color:var(--muted)}
 .olist{list-style:none}
 .oi{display:flex;align-items:flex-start;gap:14px;padding:11px 0;border-bottom:1px solid var(--bg);font-size:13.5px;color:var(--txt)}
 .oi:last-child{border-bottom:none}
 .onum{min-width:26px;height:26px;background:var(--g1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
-/* KPIs: 2 cols mobile, 5 cols desktop */
 .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
 @media(min-width:640px){.kpis{grid-template-columns:repeat(5,1fr)}}
 .kpi{background:var(--bg);border-radius:8px;padding:13px 14px;border-left:3px solid var(--g2)}
@@ -60,14 +59,12 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 .igrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .ii{display:flex;gap:9px;align-items:flex-start;padding:9px 11px;background:var(--bg);border-radius:6px;font-size:12px;color:var(--txt)}
 .inum{font-weight:700;color:var(--g2);min-width:20px;font-size:11px}
-/* Votación estática */
 .vbox{border:1.5px solid var(--border);border-radius:12px;padding:26px 30px;max-width:580px;margin:24px auto 0}
 .vtitle{font-size:20px;font-weight:600;color:var(--g1);margin-bottom:18px;text-align:center}
 .vrow{padding:14px 0;border-bottom:1px solid var(--bg)}
 .vrow:last-child{border-bottom:none}
 .vq{font-size:14px;color:var(--txt);display:flex;gap:10px;line-height:1.5}
 .vletter{font-weight:700;color:var(--g2);min-width:18px}
-/* Plan de mantenimiento */
 .obras-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
 .obra-card{background:var(--bg);border-radius:10px;padding:18px 20px;border-left:4px solid var(--g2)}
 .obra-card .oc-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
@@ -104,7 +101,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S1 PORTADA -->
 <div class="slide on" id="s1">
-  <div class="shd"><div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
+  <div class="shd"><div></div><div class="barrio">Estancia La Casualidad</div></div>
   <div class="cover">
     <svg width="90" height="68" viewBox="0 0 310 230" style="margin-bottom:18px"><use href="#logo"/></svg>
     <div class="cv-yr">Rendición de Cuentas 2025</div>
@@ -112,20 +109,16 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
     <div class="cv-s">Asamblea Ordinaria</div>
     <div class="cv-div"></div>
     <div class="cv-w">Bienvenidos</div>
-    <div class="qr-corner">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR presentación">
-      <span>ESCANEÁ PARA VER</span>
+    <div class="qr-cover">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR">
+      <span>Escaneá para ver</span>
     </div>
   </div>
 </div>
 
 <!-- S2 ORDEN DEL DÍA -->
 <div class="slide" id="s2">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="stitle">Orden del día</div>
     <ol class="olist">
@@ -143,11 +136,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S3 RESUMEN FINANCIERO -->
 <div class="slide" id="s3">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="stitle">Resumen financiero 2025</div>
     <div class="kpis">
@@ -165,11 +154,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S4 FLUJO MENSUAL -->
 <div class="slide" id="s4">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="stitle">Evolución de flujo mensual</div>
     <div class="leg"><div class="li"><div class="ld" style="background:#4c7a37"></div>Ingresos</div><div class="li"><div class="ld" style="background:#c0392b"></div>Egresos</div></div>
@@ -180,11 +165,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S5 COMPOSICIÓN EGRESOS -->
 <div class="slide" id="s5">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
     <div><div class="stitle" style="font-size:14px">Composición de egresos 2025</div><div class="cw" style="height:270px"><canvas id="ct"></canvas></div></div>
     <div><div class="stitle" style="font-size:14px">Participación vs 2024</div><div class="cw" style="height:270px"><canvas id="cc"></canvas></div></div>
@@ -194,17 +175,10 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S6 MOROSIDAD -->
 <div class="slide" id="s6">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="stitle">Evolución de la morosidad. Base de una expensa.</div>
-    <div class="leg">
-      <div class="li"><div class="ld" style="background:#a8c888"></div>2024</div>
-      <div class="li"><div class="ld" style="background:#4c7a37"></div>2025</div>
-    </div>
+    <div class="leg"><div class="li"><div class="ld" style="background:#a8c888"></div>2024</div><div class="li"><div class="ld" style="background:#4c7a37"></div>2025</div></div>
     <div class="cw" style="height:300px"><canvas id="cm"></canvas></div>
     <p class="note" style="font-size:14px;font-style:normal;font-weight:700;color:var(--txt);margin-top:16px">⚠️ Cuatro unidades agrupan el 85% de la morosidad total.</p>
   </div>
@@ -212,11 +186,7 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S7 INICIATIVAS -->
 <div class="slide" id="s7">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="stitle">Iniciativas más relevantes del período</div>
     <div class="igrid">
@@ -236,31 +206,19 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
 
 <!-- S8 VOTACIÓN GESTIÓN -->
 <div class="slide" id="s8">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="vbox">
       <div class="vtitle">Votación</div>
-      <div class="vrow">
-        <div class="vq"><span class="vletter">a)</span><span>Aprobación de la Gestión y rendición de cuentas período 2025</span></div>
-      </div>
-      <div class="vrow">
-        <div class="vq"><span class="vletter">b)</span><span>Aprobación de la continuidad de la Administración</span></div>
-      </div>
+      <div class="vrow"><div class="vq"><span class="vletter">a)</span><span>Aprobación de la Gestión y rendición de cuentas período 2025</span></div></div>
+      <div class="vrow"><div class="vq"><span class="vletter">b)</span><span>Aprobación de la continuidad de la Administración</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- S9 PLAN DE OBRAS -->
+<!-- S9 PLAN DE MANTENIMIENTO -->
 <div class="slide" id="s9">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="stitle">Plan de mantenimiento 2026 — Mejora de pavimento</div>
     <p style="font-size:13px;color:var(--muted);margin-bottom:20px">Calle del lote 100 al 110</p>
@@ -270,49 +228,32 @@ html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#
       <div class="oc-sub">1.000 m² × $70.511 + 21% IVA</div>
     </div>
     <div class="obras-grid">
-      <div class="obra-card">
-        <div class="oc-lbl">Precio de referencia</div>
-        <div class="oc-val">$70.511 + IVA</div>
-        <div class="oc-sub">por m²</div>
-      </div>
-      <div class="obra-card">
-        <div class="oc-lbl">Superficie a asfaltar</div>
-        <div class="oc-val">1.000 m²</div>
-        <div class="oc-sub">Calle lote 100 al 110</div>
-      </div>
+      <div class="obra-card"><div class="oc-lbl">Precio de referencia</div><div class="oc-val">$70.511 + IVA</div><div class="oc-sub">por m²</div></div>
+      <div class="obra-card"><div class="oc-lbl">Superficie a asfaltar</div><div class="oc-val">1.000 m²</div><div class="oc-sub">Calle lote 100 al 110</div></div>
     </div>
     <p class="note" style="margin-top:14px">Para poder cumplir con el plan de mantenimiento, se hará un ajuste de expensas equivalente a la inflación + 1% mensualmente, a partir de junio.</p>
     <p class="note" style="margin-top:8px">Los valores son de referencia y ajustables según el Índice de la Cámara de Construcción (CAC).</p>
   </div>
 </div>
 
-<!-- S10 VOTACIÓN PLAN DE OBRAS -->
+<!-- S10 VOTACIÓN PLAN -->
 <div class="slide" id="s10">
-  <div class="shd"><div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
-  
-  </div>
-    <div class="barrio">Estancia La Casualidad</div><div class="qr-nav"><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div>
-  </div>
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Estancia La Casualidad</div><div class="qr-sm"><img src="https://api.qrserver.com/v1/create-qr-code/?size=88x88&data=https://admin-laudato.github.io/laudato/la-casualidad-2025/" alt="QR"><span>VER PPT</span></div></div>
   <div class="sbody">
     <div class="vbox">
       <div class="vtitle">Votación — Plan de mantenimiento y Consejo</div>
-      <div class="vrow">
-        <div class="vq"><span class="vletter">a)</span><span>Aprobación del plan de mantenimiento 2026 — Mejora de pavimento calle lote 100 al 110</span></div>
-      </div>
-      <div class="vrow">
-        <div class="vq"><span class="vletter">b)</span><span>Elección de miembros del Consejo de Propietarios</span></div>
-      </div>
+      <div class="vrow"><div class="vq"><span class="vletter">a)</span><span>Aprobación del plan de mantenimiento 2026 — Mejora de pavimento calle lote 100 al 110</span></div></div>
+      <div class="vrow"><div class="vq"><span class="vletter">b)</span><span>Elección de miembros del Consejo de Propietarios</span></div></div>
     </div>
   </div>
 </div>
 
-</div><!-- /pres -->
+</div>
 
 <script>
 const M=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 const ING=[55454320,61223061,64627332,70018244,70562192,67975867,69824720,70985253,82578754,82638415,77553788,88267345];
 const EGR=[60555385,61317771,55903437,67641891,67877410,68120520,68712474,69123637,74759922,83319948,75388742,85185512];
-// Morosidad % 2024 y 2025
 const MORA_2024=[24,24,23,24,22,26,22,22,13,14,18,14];
 const MORA_2025=[9,12,15,11,11,14,15,20,16,11,17,14];
 const G1='#2d5a1e',G2='#4c7a37',GL='#a8c888',BL='#8ca5af',AM='#b07828';
@@ -338,26 +279,15 @@ const diffPlugin={id:'dp',afterDraw(chart){
 Chart.register(diffPlugin);
 
 window.addEventListener('load',()=>{
-  // S3: Comparativa barrios (barras horizontales)
   new Chart(document.getElementById('ci'),{type:'bar',
-    data:{
-      labels:['Las Condes','La Campiña','La Tranquera','La Casualidad'],
-      datasets:[{
-        data:[812000,625000,550245,512550],
-        backgroundColor:[BL,BL,BL,G1],
-        borderRadius:4,borderWidth:0
-      }]
-    },
+    data:{labels:['Las Condes','La Campiña','La Tranquera','La Casualidad'],
+      datasets:[{data:[812000,625000,550245,512550],
+        backgroundColor:[BL,BL,BL,G1],borderRadius:4,borderWidth:0}]},
     options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.raw.toLocaleString('es-AR')}}},
-      scales:{
-        x:{ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K',font:{size:9}},grid:{color:'#f0f0f0'}},
-        y:{ticks:{font:{size:11}},grid:{display:false}}
-      }
-    }
-  });
+      scales:{x:{ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'K',font:{size:9}},grid:{color:'#f0f0f0'}},
+               y:{ticks:{font:{size:11}},grid:{display:false}}}}});
 
-  // S4: Flujo mensual
   new Chart(document.getElementById('cf'),{type:'line',
     data:{labels:M,datasets:[
       {label:'Ingresos',data:ING,borderColor:G2,backgroundColor:G2+'28',fill:true,tension:.3,pointRadius:3,borderWidth:2},
@@ -366,19 +296,15 @@ window.addEventListener('load',()=>{
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+(c.raw/1e6).toFixed(1)+'M'}}},
       scales:{y:{ticks:{callback:v=>'$'+(v/1e6).toFixed(0)+'M',font:{size:9}},grid:{color:'#f0f0f0'}},
-               x:{ticks:{font:{size:10}},grid:{display:false}}}}
-  });
+               x:{ticks:{font:{size:10}},grid:{display:false}}}}});
 
-  // S5: Torta egresos
   new Chart(document.getElementById('ct'),{type:'doughnut',
     data:{labels:['Seguridad 65.4%','Abonos 17.9%','Mantenimiento 11.4%','Servicios 2.9%','Gtos.Banc. 1.7%','Varios 0.8%'],
       datasets:[{data:[548265944,149591526,95114663,24236248,14050294,6647975],
         backgroundColor:[G1,BL,'#8a6a30',GL,AM+'88','#bbb'],borderWidth:2,borderColor:'#fff',hoverOffset:5}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
-      plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:7,boxWidth:9}}}}
-  });
+      plugins:{legend:{position:'bottom',labels:{font:{size:10},padding:7,boxWidth:9}}}}});
 
-  // S5: Comparativo vs 2024
   new Chart(document.getElementById('cc'),{type:'bar',
     data:{labels:['Seguridad','Abonos','Mantenimiento','Servicios'],
       datasets:[
@@ -389,10 +315,8 @@ window.addEventListener('load',()=>{
       _diffs:[-2.8,-0.3,2.6,0.0],
       plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:9,padding:8}}},
       scales:{x:{ticks:{callback:v=>v+'%',font:{size:9}},grid:{color:'#f0f0f0'},max:76},
-               y:{ticks:{font:{size:10}},grid:{display:false}}}}
-  });
+               y:{ticks:{font:{size:10}},grid:{display:false}}}}});
 
-  // S6: Morosidad % 2024 vs 2025 — un solo gráfico de barras
   new Chart(document.getElementById('cm'),{type:'bar',
     data:{labels:M,datasets:[
       {label:'2024',data:MORA_2024,backgroundColor:GL,borderRadius:3,borderWidth:0},
@@ -402,11 +326,9 @@ window.addEventListener('load',()=>{
       plugins:{legend:{position:'top',labels:{font:{size:11},boxWidth:10,padding:12}},
                tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}}},
       scales:{y:{ticks:{callback:v=>v+'%',font:{size:9}},grid:{color:'#f0f0f0'}},
-               x:{ticks:{font:{size:10},autoSkip:false},grid:{display:false}}}}
-  });
+               x:{ticks:{font:{size:10},autoSkip:false},grid:{display:false}}}}});
 });
 
-// Navegación
 let cur=1;const tot=10;
 function upd(){
   document.getElementById('ctr').textContent=cur+' / '+tot;
@@ -415,12 +337,7 @@ function upd(){
 }
 function go(d){cur=Math.max(1,Math.min(tot,cur+d));upd();}
 const dotsEl=document.getElementById('dots');
-for(let i=1;i<=tot;i++){
-  const d=document.createElement('div');
-  d.className='dot'+(i===1?' on':'');
-  d.onclick=()=>{cur=i;upd();};
-  dotsEl.appendChild(d);
-}
+for(let i=1;i<=tot;i++){const d=document.createElement('div');d.className='dot'+(i===1?' on':'');d.onclick=()=>{cur=i;upd();};dotsEl.appendChild(d);}
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
 </script>
 </body>
