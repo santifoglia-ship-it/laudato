@@ -270,9 +270,9 @@ const diffPlugin={id:'dp',afterDraw(chart){
     const tw=ctx.measureText(txt).width,cr=chart.chartArea.right;
     let x=xR+6;if(x+tw+pad*2>cr)x=cr-tw-pad*2-2;
     const bw=tw+pad*2,bh=16,by=yM-8;
-    ctx.fillStyle=neg?'#fde8e8':'#e8f2de';
+    ctx.fillStyle=neg?'#e8f2de':'#fde8e8';
     ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,by,bw,bh,4);else ctx.rect(x,by,bw,bh);
-    ctx.fill();ctx.fillStyle=neg?'#8a2020':'#2d5a1e';
+    ctx.fill();ctx.fillStyle=neg?'#2d5a1e':'#8a2020';
     ctx.textBaseline='middle';ctx.fillText(txt,x+pad,yM);ctx.restore();
   });
 }};
