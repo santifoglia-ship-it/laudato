@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Inicial La Delfina — Laudato Administración</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g1:#2d5a1e;--g2:#4c7a37;--g3:#305c31;--bl:#8ca5af;--bg:#f7f9f5;--border:#d8e8c8;--txt:#1a2a10;--muted:#6a8060;--am:#b07828;--gl:#a8c888;--red:#b03030;--redl:#f5e0e0}
+html,body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#eef2ea}
+.pres{max-width:960px;margin:0 auto}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:10px 20px;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;gap:12px}
+.logo-wrap{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo-txt .l1{font-size:11px;font-weight:700;color:var(--g1);letter-spacing:.8px}
+.logo-txt .l2{font-size:9px;color:var(--muted)}
+.dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .2s}
+.dot.on{background:var(--g1);transform:scale(1.35)}
+.dot.sep{width:2px;background:var(--muted);border-radius:1px;opacity:.4;cursor:default}
+.nav-btns{display:flex;gap:8px;align-items:center}
+.nbt{padding:5px 14px;border:1px solid var(--border);border-radius:6px;background:#fff;color:var(--g1);font-size:12px;cursor:pointer;font-family:inherit}
+.nbt:hover{background:var(--bg)}
+.ctr{font-size:11px;color:var(--muted);white-space:nowrap}
+.slide{display:none;min-height:520px;background:#fff}
+.slide.on{display:block}
+.shd{display:flex;justify-content:space-between;align-items:center;padding:12px 28px;border-bottom:2px solid var(--border)}
+.barrio{font-size:10px;font-weight:500;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
+.section-tag{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:3px;background:var(--g1);color:#fff}
+.section-tag.part2{background:var(--am)}
+.sbody{padding:26px 34px}
+.stitle{font-size:17px;font-weight:600;color:var(--g1);margin-bottom:20px}
+.cover{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:460px;text-align:center;background:linear-gradient(150deg,#f5f9f2 0%,#e8f2de 100%);position:relative}
+.cv-yr{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.cv-t{font-size:36px;font-weight:300;color:var(--g1);margin-bottom:6px}
+.cv-s{font-size:18px;color:var(--g2);margin-bottom:24px}
+.cv-div{width:50px;height:2px;background:var(--g2);margin:0 auto 24px}
+.cv-w{font-size:13px;color:var(--muted);font-weight:300}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
+@media(min-width:640px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--bg);border-radius:8px;padding:13px 14px;border-left:3px solid var(--g2)}
+.kpi .lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:5px}
+.kpi .val{font-size:16px;font-weight:700;color:var(--g1)}
+.kpi .sub{font-size:10px;color:var(--muted);margin-top:2px}
+.good{color:#2a6a2a!important}
+.warn{color:var(--am)!important}
+.bad{color:var(--red)!important}
+.chart-t{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:10px}
+.cw{position:relative;width:100%}
+.note{font-size:11px;color:var(--muted);margin-top:10px;font-style:italic;line-height:1.55}
+.leg{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.ld{width:10px;height:10px;border-radius:2px}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ii{display:flex;gap:9px;align-items:flex-start;padding:9px 11px;background:var(--bg);border-radius:6px;font-size:12px;color:var(--txt)}
+.inum{font-weight:700;color:var(--g2);min-width:20px;font-size:11px}
+.tbl{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:16px}
+.tbl th{background:var(--g1);color:#fff;padding:7px 10px;text-align:left;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--border)}
+.tbl tr:nth-child(even) td{background:var(--bg)}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl .bold{font-weight:700}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:640px){.split{grid-template-columns:1fr}}
+.diag-card{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:20px 22px;margin-bottom:12px;border-left:4px solid var(--am)}
+.diag-card .dc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.diag-card .dc-title{font-size:14px;font-weight:700;color:var(--txt)}
+.diag-card .dc-tag{font-size:9px;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:.5px}
+.dc-tag.vencido{background:var(--redl);color:var(--red)}
+.dc-tag.nuevo{background:#e0f0e0;color:var(--g1)}
+.dc-tag.propuesta{background:#fff3e0;color:var(--am)}
+.diag-card .dc-body{font-size:12px;color:var(--muted);line-height:1.6}
+.diag-card .dc-body strong{color:var(--txt)}
+.highlight-box{background:var(--g1);border-radius:10px;padding:20px 24px;text-align:center;margin-bottom:16px}
+.highlight-box .hb-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#a8c888;margin-bottom:6px}
+.highlight-box .hb-val{font-size:28px;font-weight:700;color:#fff}
+.highlight-box .hb-sub{font-size:12px;color:#c8e6b8;margin-top:4px}
+.divider-slide{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:460px;text-align:center;background:linear-gradient(150deg,#f9f5e8 0%,#f0e8d0 100%)}
+.ds-num{font-size:60px;font-weight:200;color:var(--am);margin-bottom:8px}
+.ds-title{font-size:28px;font-weight:300;color:var(--txt);margin-bottom:8px}
+.ds-sub{font-size:14px;color:var(--muted)}
+.placeholder-box{border:2px dashed var(--border);border-radius:10px;padding:30px;text-align:center;color:var(--muted);font-size:13px;margin-top:16px}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="logo" viewBox="0 0 310 230">
+    <polygon points="15.5,209 39.5,209 126,59.2 114,38.4" fill="#8ca5af"/>
+    <polygon points="51.5,209 75.5,209 144,90.4 132,69.6" fill="#8ca5af"/>
+    <polygon points="138,59.2 162,59.2 210.4,143 186.4,143" fill="#4c7a37"/>
+    <polygon points="149.6,17 173.6,17 246.4,143 222.4,143" fill="#4c7a37"/>
+    <polygon points="118.7,155 106.6,176 295.4,176 283.3,155" fill="#305c31"/>
+    <polygon points="99.6,188 87.5,209 284.5,209 272.4,188" fill="#305c31"/>
+  </symbol>
+</svg>
+
+<div class="pres">
+<nav class="nav">
+  <div class="logo-wrap"><svg width="44" height="33" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div>
+  <div class="dots" id="dots"></div>
+  <div class="nav-btns">
+    <span class="ctr" id="ctr">1 / 14</span>
+    <button class="nbt" onclick="go(-1)">← Ant.</button>
+    <button class="nbt" onclick="go(1)">Sig. →</button>
+  </div>
+</nav>
+
+<!-- S1 PORTADA -->
+<div class="slide on" id="s1">
+  <div class="shd"><div></div><div class="barrio">Barrio La Delfina</div></div>
+  <div class="cover">
+    <svg width="90" height="68" viewBox="0 0 310 230" style="margin-bottom:18px"><use href="#logo"/></svg>
+    <div class="cv-yr">Laudato Administración</div>
+    <div class="cv-t">La Delfina</div>
+    <div class="cv-s">Diagnóstico Inicial</div>
+    <div class="cv-div"></div>
+    <div class="cv-w">Situación económica, financiera y operativa — 2025</div>
+  </div>
+</div>
+
+<!-- PARTE 1: SITUACIÓN ECONÓMICA Y FINANCIERA -->
+
+<!-- S2 RESUMEN FINANCIERO -->
+<div class="slide" id="s2">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="stitle">Resumen financiero 2025</div>
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">Ingresos totales</div><div class="val">$2.936M</div><div class="sub">$2.935.684.092</div></div>
+      <div class="kpi"><div class="lbl">Egresos totales</div><div class="val">$2.831M</div><div class="sub">$2.831.523.612</div></div>
+      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Saldo cierre dic-25</div><div class="val good">$77,7M</div><div class="sub">$77.678.014</div></div>
+      <div class="kpi" style="border-left-color:#2a6a2a"><div class="lbl">Patrimonio neto</div><div class="val good">$364,5M</div><div class="sub">$364.484.253</div></div>
+    </div>
+    <div class="kpis" style="grid-template-columns:repeat(3,1fr)">
+      <div class="kpi"><div class="lbl">454 UFs</div><div class="val">$558.783</div><div class="sub">Expensa ordinaria mar-26</div></div>
+      <div class="kpi"><div class="lbl">IPC acumulado 2025</div><div class="val">31,5%</div><div class="sub">Fuente: INDEC</div></div>
+      <div class="kpi"><div class="lbl">Aumento expensas 2025</div><div class="val">~45%</div><div class="sub">Acumulado ene–dic</div></div>
+    </div>
+    <p class="note">El consorcio cerró el año con superávit operativo y un patrimonio neto en crecimiento constante durante los 12 meses.</p>
+  </div>
+</div>
+
+<!-- S3 INGRESOS vs EGRESOS vs IPC -->
+<div class="slide" id="s3">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="stitle">Evolución de ingresos, egresos e IPC acumulado</div>
+    <div class="leg">
+      <div class="li"><div class="ld" style="background:#4c7a37"></div>Ingresos</div>
+      <div class="li"><div class="ld" style="background:#c0392b"></div>Egresos</div>
+      <div class="li"><div class="ld" style="background:#b07828;border:1px dashed #b07828"></div>IPC acumulado (base ene=100)</div>
+    </div>
+    <div class="cw" style="height:320px"><canvas id="cf"></canvas></div>
+    <p class="note">Los picos de egresos en junio y diciembre corresponden al pago de SAC. La línea del IPC muestra cómo habrían evolucionado los ingresos si solo hubieran seguido la inflación.</p>
+  </div>
+</div>
+
+<!-- S4 COMPOSICIÓN EGRESOS -->
+<div class="slide" id="s4">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="split">
+      <div><div class="stitle" style="font-size:14px">Composición de egresos 2025</div><div class="cw" style="height:280px"><canvas id="ct"></canvas></div></div>
+      <div><div class="stitle" style="font-size:14px">Evolución mensual — Seguridad (Watchman)</div><div class="cw" style="height:280px"><canvas id="cw"></canvas></div></div>
+    </div>
+    <p class="note">El rubro de seguridad (Watchman + M.O. Seguridad nocturno) combinado representa el 46,6% del gasto total anual.</p>
+  </div>
+</div>
+
+<!-- S5 DETALLE RUBROS -->
+<div class="slide" id="s5">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="stitle">Principales rubros de gasto — Promedio mensual 2025</div>
+    <table class="tbl">
+      <thead><tr><th>Rubro</th><th class="num">Promedio/mes</th><th class="num">% del total</th><th class="num">Var. ene→dic</th></tr></thead>
+      <tbody>
+        <tr><td class="bold">Watchman (Seguridad)</td><td class="num bold">$105,4M</td><td class="num">44,7%</td><td class="num">+59%</td></tr>
+        <tr><td>Tasa Municipal Pilar</td><td class="num">$40,6M</td><td class="num">17,2%</td><td class="num">+39%</td></tr>
+        <tr><td>Sueldos + Aportes</td><td class="num">$21,3M</td><td class="num">9,0%</td><td class="num">—</td></tr>
+        <tr><td>Espacios verdes (Olleac)</td><td class="num">$12,8M</td><td class="num">5,4%</td><td class="num">+15%</td></tr>
+        <tr><td>Gastos bancarios</td><td class="num">$7,2M</td><td class="num">3,1%</td><td class="num">+48%</td></tr>
+        <tr><td>Volquetes Pilar (residuos)</td><td class="num">$6,6M</td><td class="num">2,8%</td><td class="num">+38%</td></tr>
+        <tr><td>Servicios públicos</td><td class="num">$5,0M</td><td class="num">2,1%</td><td class="num">variable</td></tr>
+        <tr><td>Canchas tenis</td><td class="num">$5,1M</td><td class="num">2,2%</td><td class="num">—</td></tr>
+        <tr><td>M.O. Seguridad nocturno</td><td class="num">$4,4M</td><td class="num">1,9%</td><td class="num">+21%</td></tr>
+        <tr><td>Administración Costa</td><td class="num">$4,1M</td><td class="num">1,7%</td><td class="num">+35%</td></tr>
+        <tr><td>Consumición anticipada</td><td class="num">$2,2M</td><td class="num">0,9%</td><td class="num">0%</td></tr>
+        <tr><td>CCTV (FANXP)</td><td class="num">$2,0M</td><td class="num">0,8%</td><td class="num">+37%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- S6 EXPENSAS vs IPC -->
+<div class="slide" id="s6">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="stitle">Incremento mensual de expensas vs. IPC INDEC</div>
+    <div class="leg"><div class="li"><div class="ld" style="background:#4c7a37"></div>Aumento expensas</div><div class="li"><div class="ld" style="background:#c0392b88"></div>IPC INDEC</div></div>
+    <div class="cw" style="height:300px"><canvas id="cipc"></canvas></div>
+    <p class="note">En Q1 los aumentos superaron la inflación (7% vs ~2,5%). A partir de mayo se desaceleraron, quedando consistentemente por debajo del IPC.</p>
+  </div>
+</div>
+
+<!-- S7 MOROSIDAD -->
+<div class="slide" id="s7">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="stitle">Evolución de la morosidad</div>
+    <div class="split">
+      <div><div class="chart-t">Deuda acumulada ($M)</div><div class="cw" style="height:260px"><canvas id="cm"></canvas></div></div>
+      <div><div class="chart-t">Cantidad de UFs deudoras</div><div class="cw" style="height:260px"><canvas id="cmu"></canvas></div></div>
+    </div>
+    <p class="note" style="margin-top:14px">La deuda creció de $55,8M (ene) a $126,7M (dic). A marzo 2026: $179,7M, 97 UFs en mora, 12 con juicio activo. Se gestionan cartas documento y acuerdos de pago.</p>
+  </div>
+</div>
+
+<!-- S8 INVERSIONES Y CAJA CHICA -->
+<div class="slide" id="s8">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag">Parte 1 — Situación económica</div></div>
+  <div class="sbody">
+    <div class="split">
+      <div>
+        <div class="stitle" style="font-size:14px">Inversiones extraordinarias 2025 (~$40M)</div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$15,2M</span><span>Césped sintético cancha fútbol</span></div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$4,0M</span><span>Barrera vehicular + brazo 4m</span></div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$3,8M</span><span>Reglamento de Copropiedad</span></div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$3,1M</span><span>Reparaciones barreras (Axin)</span></div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$2,4M</span><span>Sensores perimetrales zonas 5-8</span></div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$1,5M</span><span>Muro perimetral (Allera)</span></div>
+        <div class="ii" style="margin-bottom:5px"><span class="inum">$1,3M</span><span>Lector facial + DNI guardia</span></div>
+        <div class="ii"><span class="inum">+$9M</span><span>Otros (farolas, cloacas, pileta, radar...)</span></div>
+      </div>
+      <div>
+        <div class="stitle" style="font-size:14px">Caja chica (intendencia)</div>
+        <div class="cw" style="height:200px"><canvas id="ccj"></canvas></div>
+        <div class="kpis" style="grid-template-columns:1fr 1fr;margin-top:10px">
+          <div class="kpi"><div class="lbl">Total anual</div><div class="val">$26,5M</div><div class="sub">~USD 19.000/año</div></div>
+          <div class="kpi"><div class="lbl">Promedio/mes</div><div class="val">$2,2M</div><div class="sub">~USD 1.570/mes</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIVIDER PARTE 2 -->
+<div class="slide" id="s9">
+  <div class="shd"><div></div><div class="barrio">Barrio La Delfina</div></div>
+  <div class="divider-slide">
+    <div class="ds-num">II</div>
+    <div class="ds-title">Diagnóstico e Iniciativas Propuestas</div>
+    <div class="ds-sub">Contratos, proveedores y oportunidades de mejora</div>
+  </div>
+</div>
+
+<!-- S10 ROELA -->
+<div class="slide" id="s10">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag part2">Parte 2 — Diagnóstico</div></div>
+  <div class="sbody">
+    <div class="stitle">Cuenta recaudadora Roela — Análisis de costos</div>
+    <div class="kpis">
+      <div class="kpi" style="border-left-color:var(--red)"><div class="lbl">Gasto anual Roela</div><div class="val bad">$66,0M</div><div class="sub">~USD 47.200 al año</div></div>
+      <div class="kpi" style="border-left-color:var(--red)"><div class="lbl">% del gasto bancario</div><div class="val bad">74,9%</div><div class="sub">$66M de $88,1M total</div></div>
+      <div class="kpi" style="border-left-color:var(--am)"><div class="lbl">% del gasto total</div><div class="val warn">2,3%</div><div class="sub">Del total de egresos</div></div>
+      <div class="kpi" style="border-left-color:var(--am)"><div class="lbl">% de la recaudación</div><div class="val warn">2,2%</div><div class="sub">De la expensa cobrada</div></div>
+    </div>
+    <div class="cw" style="height:220px"><canvas id="croela"></canvas></div>
+    <div class="highlight-box" style="margin-top:16px;background:var(--red)">
+      <div class="hb-lbl">Ahorro anual al dar de baja Roela</div>
+      <div class="hb-val">$66M / año — ~USD 47.200</div>
+      <div class="hb-sub">Ya eliminado de la primera expensa bajo la nueva administración</div>
+    </div>
+  </div>
+</div>
+
+<!-- S11 CONTRATO SEGURIDAD -->
+<div class="slide" id="s11">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag part2">Parte 2 — Diagnóstico</div></div>
+  <div class="sbody">
+    <div class="stitle">Contrato de seguridad — Watchman</div>
+    <div class="diag-card" style="border-left-color:var(--red)">
+      <div class="dc-head"><div class="dc-title">Estado del contrato</div><div class="dc-tag vencido">CONTRATO VENCIDO</div></div>
+      <div class="dc-body">El contrato de seguridad se encuentra vencido. El prestador actual opera con una <strong>nueva razón social (Seguridad Watchman S.A., CUIT 30-71221490-9)</strong>.</div>
+    </div>
+    <div class="diag-card">
+      <div class="dc-head"><div class="dc-title">Documentación solicitada</div><div class="dc-tag propuesta">EN GESTIÓN</div></div>
+      <div class="dc-body">
+        <strong>a)</strong> Habilitación Ministerial (Ley 12.297 Prov. Buenos Aires)<br>
+        <strong>b)</strong> Seguros actualizados (RC + Vida Obligatorio con cláusula de no repetición)<br>
+        <strong>c)</strong> Nómina de personal asignado + ART vigente<br>
+        <strong>d)</strong> Nota certificada de continuidad laboral (antigüedad y derechos del personal)
+      </div>
+    </div>
+    <div class="diag-card" style="border-left-color:var(--g1)">
+      <div class="dc-head"><div class="dc-title">Contingencia patrimonial identificada</div><div class="dc-tag vencido">~$150M</div></div>
+      <div class="dc-body">Dos expedientes judiciales: <strong>"Hipólito, Juan Carlos c/ Watchman" y "Vaamonde, Fernando Javier c/ Watchman"</strong>. Se propone una <strong>Garantía de Solvencia e Indemnidad</strong>: construcción de 550m lineales de muro perimetral (hormigón gunitado, llave en mano, 120 días hábiles). Se mantiene fianza personal de socios y cláusula de indemnidad.</div>
+    </div>
+  </div>
+</div>
+
+<!-- S12 CÁMARAS / CERCO / SEGURIDAD ELECTRÓNICA -->
+<div class="slide" id="s12">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag part2">Parte 2 — Diagnóstico</div></div>
+  <div class="sbody">
+    <div class="stitle">Seguridad electrónica — Cámaras y cerco eléctrico</div>
+    <div class="diag-card" style="border-left-color:var(--red)">
+      <div class="dc-head"><div class="dc-title">Situación actual</div><div class="dc-tag vencido">PRESTADOR DISUELTO</div></div>
+      <div class="dc-body">El prestador actual de cámaras y cerco eléctrico <strong>(Overnet)</strong> se encuentra en proceso de disolución. Se requiere migrar el servicio de forma urgente.</div>
+    </div>
+    <div class="diag-card" style="border-left-color:var(--g1)">
+      <div class="dc-head"><div class="dc-title">Propuesta</div><div class="dc-tag nuevo">INICIATIVA</div></div>
+      <div class="dc-body">Integrar cámaras y cerco eléctrico dentro del nuevo contrato de seguridad con Watchman, de modo que la <strong>seguridad electrónica</strong> (cámaras + cerco) quede bajo el mismo prestador que la <strong>seguridad física</strong>.<br><br>
+      <strong>Objetivo: todos los recursos de seguridad con un único responsable.</strong><br><br>
+      La garantía de solvencia e indemnidad mediante la obra del muro perimetral cubre también este aspecto del contrato ampliado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- S13 CONTRATOS VENCIDOS -->
+<div class="slide" id="s13">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag part2">Parte 2 — Diagnóstico</div></div>
+  <div class="sbody">
+    <div class="stitle">Otros contratos y medidas implementadas</div>
+    <div class="diag-card">
+      <div class="dc-head"><div class="dc-title">Sistema de ingreso — Open Key</div><div class="dc-tag vencido">CONTRATO VENCIDO</div></div>
+      <div class="dc-body">El contrato del sistema de control de ingreso Open Key se encuentra vencido. <strong>Se buscará renovar con los actuales prestadores</strong> para dar continuidad al servicio.</div>
+    </div>
+    <div class="diag-card">
+      <div class="dc-head"><div class="dc-title">Mantenimiento y recolección</div><div class="dc-tag vencido">CONTRATO VENCIDO</div></div>
+      <div class="dc-body">El contrato de mantenimiento y recolección se encuentra vencido. <strong>Se buscará renovar con los actuales prestadores</strong> para mantener la continuidad operativa.</div>
+    </div>
+    <div class="diag-card" style="border-left-color:var(--g1)">
+      <div class="dc-head"><div class="dc-title">Baja de cuenta recaudadora Roela</div><div class="dc-tag nuevo">IMPLEMENTADO</div></div>
+      <div class="dc-body">Se eliminó Roela de la primera expensa. <strong>Ahorro anual: $66M (~USD 47.200)</strong>. Representaba el 74,9% de los gastos bancarios y el 2,3% del gasto total.</div>
+    </div>
+  </div>
+</div>
+
+<!-- S14 FORESTACIÓN Y PAVIMENTO -->
+<div class="slide" id="s14">
+  <div class="shd"><div class="logo-wrap"><svg width="34" height="26" viewBox="0 0 310 230"><use href="#logo"/></svg><div class="logo-txt"><div class="l1">LAUDATO</div><div class="l2">Administración</div></div></div><div class="barrio">Barrio La Delfina</div><div class="section-tag part2">Parte 2 — Diagnóstico</div></div>
+  <div class="sbody">
+    <div class="stitle">Forestación de calles y mantenimiento de pavimento</div>
+    <div class="diag-card" style="border-left-color:var(--g1)">
+      <div class="dc-head"><div class="dc-title">Relevamiento en curso</div><div class="dc-tag propuesta">PENDIENTE</div></div>
+      <div class="dc-body">Se está elaborando un <strong>mapa de estado actual de la forestación de calles</strong> y el <strong>estado del pavimento</strong> para definir un plan de mantenimiento. Una vez disponible, se incorporará al informe con la propuesta de intervención y presupuesto asociado.</div>
+    </div>
+    <div class="placeholder-box">
+      📍 Mapa de forestación y estado de calles<br><br>
+      <em>Contenido pendiente — Se incorporará cuando esté disponible el relevamiento</em>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const M=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+const ING=[186988037,224605586,216353332,234543815,242303942,237125232,264663635,257618039,251722500,278798944,272432545,289522530];
+const EGR=[213128851,202706527,211045711,211144404,197075816,239678935,254994981,244682338,252307913,258702505,262450175,281785757];
+const ipcM=[2.2,2.4,3.7,3.4,3.3,2.7,2.4,2.2,2.1,2.3,2.5,2.8];
+const ipcLine=[];let base=ING[0];ipcLine.push(base);for(let i=1;i<12;i++){base=base*(1+ipcM[i]/100);ipcLine.push(Math.round(base));}
+const MORA_AMT=[55.8,57.5,64.6,78.4,81.8,96.7,100.7,107.4,123.1,127.2,133.0,126.7];
+const MORA_UF=[70,64,63,50,55,53,50,39,38,42,45,35];
+const WATCH=[79.3,81.5,81.8,90.1,83.3,109.2,113.7,121.6,126.9,123.3,131.5,126.1];
+const EXP_INC=[7.0,6.0,7.0,4.0,2.8,1.5,1.6,1.9,1.9,2.1,2.3,2.5];
+const IPC_IND=[2.2,2.4,3.7,3.4,3.3,2.7,2.4,2.2,2.1,2.3,2.5,2.8];
+const CAJA=[1.1,1.7,1.4,2.2,3.6,1.4,3.2,1.4,1.2,3.0,2.9,3.4];
+const ROELA=[4.1,4.6,5.1,5.1,5.9,5.2,6.2,5.9,5.8,6.2,5.8,6.1];
+const G1='#2d5a1e',G2='#4c7a37',GL='#a8c888',BL='#8ca5af',AM='#b07828',RED='#b03030';
+
+window.addEventListener('load',()=>{
+  new Chart(document.getElementById('cf'),{type:'line',
+    data:{labels:M,datasets:[
+      {label:'Ingresos',data:ING,borderColor:G2,backgroundColor:G2+'28',fill:true,tension:.3,pointRadius:3,borderWidth:2},
+      {label:'Egresos',data:EGR,borderColor:'#c0392b',backgroundColor:'#c0392b18',fill:true,tension:.3,pointRadius:3,borderWidth:2},
+      {label:'IPC acumulado (base ene)',data:ipcLine,borderColor:AM,backgroundColor:'transparent',fill:false,tension:.3,pointRadius:2,borderWidth:2,borderDash:[6,3]}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+(c.raw/1e6).toFixed(1)+'M'}}},
+      scales:{y:{ticks:{callback:v=>'$'+(v/1e6).toFixed(0)+'M',font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+  new Chart(document.getElementById('ct'),{type:'doughnut',
+    data:{labels:['Seguridad 44,7%','Tasa Municipal 17,2%','Sueldos+Aportes 9,0%','Esp. Verdes 5,4%','Gtos Banc. 3,1%','Residuos 2,8%','Serv. Públicos 2,1%','Otros 15,7%'],
+      datasets:[{data:[1265,487,251,153,87,79,60,445],
+        backgroundColor:[G1,BL,'#8a6a30',GL,AM+'cc','#7a9a6a','#a0b890','#bbb'],borderWidth:2,borderColor:'#fff',hoverOffset:5}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+      plugins:{legend:{position:'bottom',labels:{font:{size:9},padding:5,boxWidth:8}}}}});
+
+  new Chart(document.getElementById('cw'),{type:'line',
+    data:{labels:M,datasets:[{label:'Watchman',data:WATCH,borderColor:G1,backgroundColor:G1+'30',fill:true,tension:.3,pointRadius:3,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.raw.toFixed(1)+'M'}}},
+      scales:{y:{ticks:{callback:v=>'$'+v+'M',font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+  new Chart(document.getElementById('cipc'),{type:'bar',
+    data:{labels:M,datasets:[
+      {label:'Aumento expensas',data:EXP_INC,backgroundColor:G2,borderRadius:3,borderWidth:0},
+      {label:'IPC INDEC',data:IPC_IND,backgroundColor:'#c0392b88',borderRadius:3,borderWidth:0}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.raw+'%'}}},
+      scales:{y:{ticks:{callback:v=>v+'%',font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+  new Chart(document.getElementById('cm'),{type:'bar',
+    data:{labels:M,datasets:[{label:'Deuda acumulada',data:MORA_AMT,backgroundColor:RED+'99',borderRadius:3,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.raw+'M'}}},
+      scales:{y:{ticks:{callback:v=>'$'+v+'M',font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+  new Chart(document.getElementById('cmu'),{type:'line',
+    data:{labels:M,datasets:[{label:'UFs deudoras',data:MORA_UF,borderColor:AM,backgroundColor:AM+'28',fill:true,tension:.3,pointRadius:4,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+' UFs'}}},
+      scales:{y:{ticks:{font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+  new Chart(document.getElementById('ccj'),{type:'bar',
+    data:{labels:M,datasets:[{label:'Caja chica',data:CAJA,backgroundColor:BL+'cc',borderRadius:3,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'$'+c.raw+'M'}}},
+      scales:{y:{ticks:{callback:v=>'$'+v+'M',font:{size:9}},grid:{color:'#f0f0f0'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+  new Chart(document.getElementById('croela'),{type:'bar',
+    data:{labels:M,datasets:[{label:'Roela',data:ROELA,backgroundColor:RED+'cc',borderRadius:3,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Roela: $'+c.raw+'M (~USD '+(c.raw*1e6/1400).toFixed(0)+')'}}},
+      scales:{y:{ticks:{callback:v=>'$'+v+'M',font:{size:9}},grid:{color:'#f0f0f0'},min:0,max:8},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+});
+
+let cur=1;const tot=14;
+function upd(){
+  document.getElementById('ctr').textContent=cur+' / '+tot;
+  document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('on',i+1===cur));
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i+1===cur));
+}
+function go(d){cur=Math.max(1,Math.min(tot,cur+d));upd();}
+const dotsEl=document.getElementById('dots');
+for(let i=1;i<=tot;i++){
+  if(i===9){const sep=document.createElement('div');sep.className='dot sep';dotsEl.appendChild(sep);}
+  const d=document.createElement('div');d.className='dot'+(i===1?' on':'');d.onclick=()=>{cur=i;upd();};dotsEl.appendChild(d);
+}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+</script>
+</body>
+</html>
